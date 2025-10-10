@@ -6,7 +6,7 @@ import userRoutes from './routes/userRoutes.js';
 dotenv.config();
 const app = express();
 
-const PORT = process.env.PORT || 3000; // Add default port
+const PORT = process.env.PORT || 3000; // default port
 
 // Middleware
 app.use(express.json());

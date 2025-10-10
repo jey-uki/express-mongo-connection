@@ -58,10 +58,14 @@ export const createUser = async (req, res) => {
         });
     } catch (error) {
         if (error.name === 'ValidationError') {
-            const errors = Object.values(error.errors).map(err => err.message);
+            const errors = Object.values(error.errors).map(err => ({
+                field: err.path,
+                message: err.message
+            }));
             return res.status(400).json({
                 success: false,
-                errors
+                error: 'Validation failed',
+                details: errors  // More structured response
             });
         }
         if (error.code === 11000) {
@@ -76,7 +80,6 @@ export const createUser = async (req, res) => {
         });
     }
 };
-
 export const updateUser = async (req, res) => {
     try {
         const user = await User.findByIdAndUpdate(
