@@ -177,22 +177,3 @@ app.listen(PORT, () => {
 
 // Export the app instance for testing purposes
 export default app;
-
-/**
- * APPLICATION STRUCTURE:
- * 
- * Project Structure:
- *   ├── app.js          (Main application entry point - this file)
- *   ├── routes/         (Route definitions)
- *   │   └── userRoutes.js
- *   ├── controllers/    (Business logic handlers)
- *   │   └── userController.js
- *   ├── models/         (Mongoose data models)
- *   │   └── User.js
- *   └── .env           (Environment variables)
- * 
- * Technologies Used:
- *   - Express.js: Web application framework
- *   - Mongoose: MongoDB object modeling
- *   - dotenv: Environment variable management
- */
