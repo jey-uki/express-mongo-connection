@@ -1,5 +1,10 @@
 import User from '../models/User.js';
 
+/**
+ * Get all users
+ * @route GET /api/users
+ * @returns {Object} List of all users
+ */
 export const getUsers = async (req, res) => {
     try {
         const users = await User.find();
@@ -16,6 +21,12 @@ export const getUsers = async (req, res) => {
     }
 };
 
+/**
+ * Get user by ID
+ * @route GET /api/users/:id
+ * @param {string} req.params.id - User ID
+ * @returns {Object} User data
+ */
 export const getUserById = async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
@@ -47,6 +58,12 @@ export const getUserById = async (req, res) => {
     }
 };
 
+/**
+ * Create a new user
+ * @route POST /api/users
+ * @param {Object} req.body - User data (name, email, age, isActive)
+ * @returns {Object} Created user data
+ */
 export const createUser = async (req, res) => {
     try {
         const user = new User(req.body);
@@ -80,14 +97,22 @@ export const createUser = async (req, res) => {
         });
     }
 };
+
+/**
+ * Update user by ID
+ * @route PUT /api/users/:id
+ * @param {string} req.params.id - User ID
+ * @param {Object} req.body - Updated user data
+ * @returns {Object} Updated user data
+ */
 export const updateUser = async (req, res) => {
     try {
         const user = await User.findByIdAndUpdate(
             req.params.id,
             req.body,
             {
-                new: true,
-                runValidators: true
+                new: true,        // Return updated document
+                runValidators: true  // Run model validators on update
             }
         );
 
@@ -123,6 +148,12 @@ export const updateUser = async (req, res) => {
     }
 };
 
+/**
+ * Delete user by ID
+ * @route DELETE /api/users/:id
+ * @param {string} req.params.id - User ID
+ * @returns {Object} Success message
+ */
 export const deleteUser = async (req, res) => {
     try {
         const user = await User.findByIdAndDelete(req.params.id);
