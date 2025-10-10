@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Email is required'],
         unique: true,
         lowercase: true,
+        trim: true, // Add trim
         match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email']
     },
     age: {
@@ -25,6 +26,12 @@ const userSchema = new mongoose.Schema({
     }
 }, {
     timestamps: true,
+    // toJSON: {
+    //     transform: function (doc, ret) {
+    //         delete ret.__v; // Always remove version key
+    //         return ret;
+    //     }
+    // },
     // collection: 'products' // Exact collection name, no pluralization
 });
 

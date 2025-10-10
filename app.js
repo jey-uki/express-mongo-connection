@@ -1,14 +1,12 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv'
-
+import dotenv from 'dotenv';
 import userRoutes from './routes/userRoutes.js';
 
-dotenv.config()
+dotenv.config();
 const app = express();
 
-const PORT = process.env.PORT;
-
+const PORT = process.env.PORT || 3000; // Add default port
 
 // Middleware
 app.use(express.json());
@@ -20,6 +18,7 @@ const connectDB = async () => {
         console.log('Connected to MongoDB');
     } catch (error) {
         console.error('Connection failed:', error);
+        process.exit(1); // Exit process on connection failure
     }
 };
 connectDB();
