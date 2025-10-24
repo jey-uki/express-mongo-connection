@@ -11,7 +11,7 @@ export const getUsers = async (req, res) => {
         res.json({
             success: true,
             count: users.length,
-            data: users
+            users: users
         });
     } catch (error) {
         res.status(500).json({
@@ -40,7 +40,7 @@ export const getUserById = async (req, res) => {
 
         res.json({
             success: true,
-            data: user
+            user: user
         });
     } catch (error) {
         // Mongoose automatically handles invalid ObjectId with CastError
@@ -71,7 +71,7 @@ export const createUser = async (req, res) => {
 
         res.status(201).json({
             success: true,
-            data: savedUser
+            user: savedUser
         });
     } catch (error) {
         if (error.name === 'ValidationError') {
@@ -125,7 +125,7 @@ export const updateUser = async (req, res) => {
 
         res.json({
             success: true,
-            data: user
+            user: user
         });
     } catch (error) {
         if (error.name === 'CastError') {
